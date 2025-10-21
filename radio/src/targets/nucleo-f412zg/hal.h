@@ -46,30 +46,32 @@
 #define EXTMODULE_USART_RX_DMA_CHANNEL   LL_DMA_CHANNEL_4
 #define EXTMODULE_USART_RX_DMA_STREAM    LL_DMA_STREAM_1
 
+// I2C Bus 1 on PB8/PB9 (DS3231 RTC and others)
+#define I2C_B1                           I2C1
+#define I2C_B1_SCL_GPIO                  GPIO_PIN(GPIOB, 8)
+#define I2C_B1_SDA_GPIO                  GPIO_PIN(GPIOB, 9)
+#define I2C_B1_GPIO_AF                   LL_GPIO_AF_4
+#define I2C_B1_CLK_RATE                  400000
+
+// SPI LCD (ILI9341) over SPI1
+#define LCD_SPI                           SPI1
+#define LCD_SPI_CLK                       GPIO_PIN(GPIOA, 5)
+#define LCD_SPI_MISO                      GPIO_PIN(GPIOA, 6)
+#define LCD_SPI_MOSI                      GPIO_PIN(GPIOA, 7)
+#define LCD_SPI_CS                        GPIO_PIN(GPIOC, 1)
+#define LCD_SPI_RS                        GPIO_PIN(GPIOC, 0)
+#define LCD_NRST                          GPIO_PIN(GPIOC, 2)
+#define LCD_SPI_DMA                       DMA2
+#define LCD_SPI_DMA_CHANNEL               LL_DMA_CHANNEL_3
+#define LCD_SPI_TX_DMA_STREAM             LL_DMA_STREAM_3
+#define LCD_SPI_RX_DMA_STREAM             LL_DMA_STREAM_0
+
 // USB FS (CDC)
 #define USB_GPIO_AF                   GPIO_AF10
 #define USB_GPIO_DM                   GPIO_PIN(GPIOA, 11)
 #define USB_GPIO_DP                   GPIO_PIN(GPIOA, 12)
 // Optional VBUS detect: choose a free pin if wired
 // #define USB_GPIO_VBUS              GPIO_PIN(GPIOA, 9)
-
-// Monochrome 128x64 SPI LCD wiring (SSD130x/ST7565 style)
-#define LCD_MOSI_GPIO                 GPIO_PIN(GPIOA, 7)
-#define LCD_CLK_GPIO                  GPIO_PIN(GPIOA, 5)
-#define LCD_A0_GPIO                   GPIO_PIN(GPIOC, 0)
-#define LCD_NCS_GPIO                  GPIO_PIN(GPIOC, 1)
-#define LCD_RST_GPIO                  GPIO_PIN(GPIOC, 2)
-#define LCD_SPI                       SPI1
-#define LCD_GPIO_AF                   GPIO_AF5
-// Use a conservative SPI prescaler (set to the fastest stable for your panel)
-#define LCD_SPI_PRESCALER             0
-// Use DMA2 Stream5 (TX) for SPI1
-#define LCD_DMA                       DMA2
-#define LCD_DMA_Stream                DMA2_Stream5
-#define LCD_DMA_Stream_IRQn           DMA2_Stream5_IRQn
-#define LCD_DMA_Stream_IRQHandler     DMA2_Stream5_IRQHandler
-#define LCD_DMA_FLAGS                 (DMA_HIFCR_CTCIF5 | DMA_HIFCR_CHTIF5 | DMA_HIFCR_CTEIF5 | DMA_HIFCR_CDMEIF5 | DMA_HIFCR_CFEIF5)
-#define LCD_DMA_FLAG_INT              DMA_HIFCR_CTCIF5
 
 // microSD over SPI2 (SPI mode)
 #define STORAGE_USE_SDCARD_SPI

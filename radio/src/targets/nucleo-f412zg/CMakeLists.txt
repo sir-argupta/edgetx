@@ -10,8 +10,8 @@ set(PWR_BUTTON "PRESS" CACHE STRING "Pwr button type (PRESS/SWITCH)")
 set(CPU_TYPE STM32F4)
 set(HSE_VALUE 8000000)
 set(STORAGE_MODELSLIST YES)
-set(GUI_DIR 128x64)
-set(BITMAPS_DIR 128x64)
+set(GUI_DIR colorlcd)
+set(BITMAPS_DIR 320x240)
 set(TARGET_DIR nucleo-f412zg)
 set(USB_SERIAL ON CACHE BOOL "Enable USB serial (CDC)")
 set(SDCARD YES)
@@ -32,6 +32,7 @@ set(TARGET_LINKER_DIR stm32f407)
 add_definitions(
   -DSTM32_SUPPORT_32BIT_TIMERS
 )
+add_definitions(-DCOLORLCD -DLIBOPENUI)
 
 add_definitions(-DPWR_BUTTON_${PWR_BUTTON})
 
@@ -47,7 +48,7 @@ set(BOARD_COMMON_SRC
   ${TARGET_SRC_DIR}/backlight_driver.cpp
   ${TARGET_SRC_DIR}/haptic_driver.cpp
   ${TARGET_SRC_DIR}/usb_descriptor.h
-  ${TARGET_SRC_DIR}/lcd_driver_spi.cpp
+  ${TARGET_SRC_DIR}/lcd_ili9341.cpp
   targets/common/arm/stm32/abnormal_reboot.cpp
   targets/common/arm/stm32/delays_driver.cpp
   targets/common/arm/stm32/flash_driver.cpp
